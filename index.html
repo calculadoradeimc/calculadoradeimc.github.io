@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de IMC</title>
+    <style>
+        *, body {
+            background-color: #f2f3f4;
+            color: #262a2f;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        h1, h2 {
+            text-align: center;
+            background-color: #2e455c;
+            color: #bfc5cb;
+            padding: 0.5em;
+            border-radius: 0.5em;
+        }
+
+        .input {
+            color: #262a2f;
+            font-size: large;
+            font-weight: 900;
+            text-align: center;
+            border-top: none;
+            border-right: none;
+            border-left: none;
+            padding: 1em;
+        }
+
+        .input:focus {
+            outline: none;
+        }
+
+        .btn {
+            cursor: pointer;
+            background-color: #2e455c;
+            color: #bfc5cb;
+            font-weight: 900;
+            border: none;
+            border-radius: 0.5em;
+            padding: 1em;
+            margin: 1em;
+        }
+
+        .result {
+            margin-top: 0.5em;
+            text-align: center;
+            font-size: 1.5em;
+            font-weight: 900;
+            color: #262a2f;
+        }
+
+        .table {
+            table-layout: fixed;
+            border-style: 1px solid #262a2f;
+        }
+
+        .table th,
+        .table td {
+            border: 1px solid #262a2f;
+            padding: 8px;
+        }
+
+        .table th {
+            background-color: #2e455c;
+            color: #bfc5cb;
+        }
+    </style>
+</head>
+<body>
+    <h1>Calculadora de IMC</h1>
+    <div class="container">
+        <input type="text" id="height" class="input" placeholder="Altura (Ex.: 1.70)"><br>
+        <input type="text" id="weight" class="input" placeholder="Peso (Ex.: 70)"><br>
+        <button class="btn" onclick="calcIMC()">Calcular IMC</button><br>
+        <span id="result" class="result"></span>
+
+        <h2>Tabela IMC</h2>
+        <table class="table">
+            <tr>
+                <th>IMC</th>
+                <th>Classificação</th>
+            </tr>
+            <tr>
+                <td>Menor do que 18,5</td>
+                <td>Abaixo do peso</td>
+            </tr>
+            <tr>
+                <td>Entre 18,5 e 24,9</td>
+                <td>Peso ideal</td>
+            </tr>
+            <tr>
+                <td>Entre 25 e 29,9</td>
+                <td>Acima do peso</td>
+            </tr>
+            <tr>
+                <td>Entre 30 e 34,9</td>
+                <td>Obesidade I</td>
+            </tr>
+            <tr>
+                <td>Entre 35 e 39,9</td>
+                <td>Obesidade II</td>
+            </tr>
+            <tr>
+                <td>Maior do que 40</td>
+                <td>Obesidade III</td>
+            </tr>
+        </table>
+    </div>
+
+    <script>
+       function calcIMC() {
+        var h = parseFloat(document.getElementById("height").value);
+        var w = parseFloat(document.getElementById("weight").value);
+        var r = document.getElementById("result");
+        var msg;
+
+        var result = w / (h * h);
+
+        if (result < 18.5) {
+            msg = "Seu IMC é " + result.toFixed(1) + "! Você está abaixo do peso!";
+        }else if (result < 25){
+            msg = "Seu IMC é " + result.toFixed(1) + "! Você está no peso ideal!";    
+        }else if (result < 30) {
+            msg = "Seu IMC é " + result.toFixed(1) + "! Você está acima do peso!";
+        }else if (result < 35) {
+            msg = "Seu IMC é " + result.toFixed(1) + "! Você está em Obesidade I!";
+        }else if (result < 40) {
+            msg = "Seu IMC é " + result.toFixed(1) + "! Você está em Obesidade II!";
+        }else {
+            msg = "Seu IMC é " + result.toFixed(1) + "! Você está em Obesidade III!";
+        }
+
+        r.textContent = msg;
+    } 
+    </script>
+</body>
+</html>
